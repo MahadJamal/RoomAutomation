@@ -55,6 +55,7 @@ const int ReedSwPin = 3;    // the number of the reedSw pin
 const int OnBoardledPin = 13;      // the number of the LED pin. Only used for debugging
 
 int ledState = HIGH;         // the current state of the output pin
+int ledPrevState = LOW;
 int ReedSwState;             // the current reading from the Reed Switch pin
 int lastReedSwState = LOW;   // the previous reading from the input pin
 
@@ -156,6 +157,7 @@ void sendBluetoothData(int state) {
   {
     Serial.println("Door: Closed");
   }
+  
 }
 
 //======================================================================================
@@ -226,11 +228,12 @@ void loop(void) {
   } while ( u8g.nextPage() );
 
   // rebuild the picture after some delay
-  //delay(500);
+  delay(500);
 
   // Add timer. If no activity for 15 seconds, turn of LED.
   checkReedSw();
   getBluetoothData();
+  delay(500);
   sendBluetoothData(ledState);
   
 
