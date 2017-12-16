@@ -45,10 +45,13 @@ U8GLIB_SSD1306_128X64 u8g(U8G_I2C_OPT_NO_ACK);	// Display which does not send AC
 
 
 
-//-------------------------------------------------------------------------------------
 
-bool doorActive = 0;
 
+//---------------------------Global Variable----------------------------------------------------------
+
+bool DeviceStatus = 1;  // By default its 1. It is kept 1 for this release. In future will be changed to present actual device status choosen by remote device (probably a mobile app).
+int DoorStatus = 0;  //Decides in which state we are and stores data from bluetooth
+int PrevDoorStatus = 1;
 
 //Set up for Reed Switch
 const int ReedSwPin = 3;    // the number of the reedSw pin
@@ -61,39 +64,53 @@ int lastReedSwState = LOW;   // the previous reading from the input pin
 
 
 unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
-unsigned long debounceDelay = 50;    // the debounce time; increase if the output flickers
+unsigned long debounceDelay = 20;    // the debounce time; increase if the output flickers
 
 //Set-up for Bluetooth Module
 #define ExternalLedPin 7 //If we want to add LED when the door is open. This will consume extra energy so maybe not
-int state = 0; //Decides in which state we are and stores data from bluetooth
 
 //--------------------------------------------------------------------------------------
 
-//======================================================================================
-void drawActivated(void) {
+
+
+
+//==================================Functions====================================================
+
+//--------------------- drawStatus --------------------------
+
+void drawStatus(void) {   
   // graphic commands to redraw the complete screen should be placed here
   u8g.setFont(u8g_font_unifont);
 
   //u8g.setFont(u8g_font_contributed);
   //u8g.setFont(u8g_font_osb21);
-  u8g.drawStr( 23, 10, "Activated");
-//  u8g.drawStr( 5, 25, "Closed Time:");
-//  u8g.drawStr( 5, 40, "Open Time");
-  if(ledState)
+  if(DeviceStatus)
+  {
+    u8g.drawStr( 23, 10, "Activated");
+  }
+  else
+  {
+    u8g.drawStr( 23, 10, "Not Active");
+  }
+  if(DoorStatus)
   {
     u8g.drawStr( 16, 40, "Door Opened");
   }
+  else
+  {
+    u8g.drawStr( 16, 40, "Door Closed");
+  }
 }
 
-void drawNotActivated(void) {
-  // graphic commands to redraw the complete screen should be placed here
-  u8g.setFont(u8g_font_unifont);
-  //u8g.setFont(u8g_font_osb21);
-  u8g.drawStr( 23, 35, "Not Active");
-}
+//-----------------------------------------------------------
 
+
+//--------------------- checkReedSw -------------------------
 void checkReedSw(void) {
   int reading = digitalRead(ReedSwPin);
+  
+  //Serial.println("ReedSw Function Started");
+  //Serial.println(reading);
 
   if (reading != lastReedSwState) {
     // reset the debouncing timer
@@ -110,56 +127,57 @@ void checkReedSw(void) {
 
       // If reed switch input is high than turn LED ON
       if (ReedSwState == HIGH) {
-        ledState = HIGH;
+        DoorStatus = HIGH;
       }
       else
       {
-        ledState = LOW;
+        DoorStatus = LOW;
       }
     }
   }
   // set the LED:
-  digitalWrite(OnBoardledPin, ledState);
+  digitalWrite(OnBoardledPin, DoorStatus);
 
   // save the reading.  Next time through the loop,
   // it'll be the lastReedSwState:
   lastReedSwState = reading;
-
-
 }
+//----------------------------------------------------------
 
 
 
+//-----------------getBluetoothData-------------------------
 void getBluetoothData(void) {
+  int state;
   if (Serial.available() > 0) { // Checks whether data is comming from the serial port
     state = Serial.read(); // Reads the data from the serial port
   }
   if (state == '0') {
     //digitalWrite(OnBoardledPin, LOW); // Turn LED OFF
     //Serial.println("LED: OFF"); // Send back, to the phone, the String "LED: ON"
-    doorActive = 0;
-    state = 0;
+    //doorActive = 0;
+    DeviceStatus = 0;
   }
   else if (state == '1') {
     //digitalWrite(OnBoardledPin, HIGH);
     //Serial.println("LED: ON");;
-    doorActive = 1;
-    state = 0;
+    //doorActive = 1;
+    DeviceStatus = 1;
   }
 }
+//----------------------------------------------------------
 
-void sendBluetoothData(int state) {
-  if(state)
+
+//--------------- sendBluetoothData ------------------------
+void sendBluetoothData() {
+  if(DoorStatus != PrevDoorStatus)
   {
-    Serial.println("Door: Open");
+    Serial.println(DoorStatus);
   }
-  else
-  {
-    Serial.println("Door: Closed");
-  }
+  PrevDoorStatus = DoorStatus;
   
 }
-
+//---------------------------------------------------------
 //======================================================================================
 
 
@@ -194,7 +212,7 @@ void setup(void) {
   pinMode(OnBoardledPin, OUTPUT);
 
   // set initial LED state
-  digitalWrite(OnBoardledPin, ledState);
+  digitalWrite(OnBoardledPin, DoorStatus);
 
 
   //-------------------------------------------------------
@@ -202,7 +220,7 @@ void setup(void) {
   //Set-up for Bluetooth (Hc-05)
   //  pinMode(OnBoard, OUTPUT);
   //  digitalWrite(OnBoardOnBoardledPin, LOW);
-  Serial.begin(38400); // Default communication rate of the Bluetooth module
+  Serial.begin(9600); // Default communication rate of the Bluetooth module
 
 
 
@@ -215,26 +233,21 @@ void setup(void) {
 
 void loop(void) {
   // picture loop
+
+  //Serial.println("My Sketch has started"); //----------Debug Code----------
   u8g.firstPage();
   do {
-    if (doorActive)
-    {
-      drawActivated();
-    }
-    else
-    {
-      drawNotActivated();
-    }
+    drawStatus();
   } while ( u8g.nextPage() );
 
   // rebuild the picture after some delay
-  delay(500);
+  //delay(500);
 
   // Add timer. If no activity for 15 seconds, turn of LED.
   checkReedSw();
   getBluetoothData();
-  delay(500);
-  sendBluetoothData(ledState);
+  //delay(500);
+  sendBluetoothData();
   
 
 
