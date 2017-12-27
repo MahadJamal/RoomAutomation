@@ -1,4 +1,4 @@
-/*
+                                                                                                                                                                                   /*
 This is Arduino sketch for Door Open Alert device. 
 =========================================================================
 For OLED graphics we are using U8glib
@@ -64,7 +64,7 @@ int lastReedSwState = LOW;   // the previous reading from the input pin
 
 
 unsigned long lastDebounceTime = 0;  // the last time the output pin was toggled
-unsigned long debounceDelay = 20;    // the debounce time; increase if the output flickers
+unsigned long debounceDelay = 30;    // the debounce time; increase if the output flickers
 
 //Set-up for Bluetooth Module
 #define ExternalLedPin 7 //If we want to add LED when the door is open. This will consume extra energy so maybe not
@@ -127,11 +127,11 @@ void checkReedSw(void) {
 
       // If reed switch input is high than turn LED ON
       if (ReedSwState == HIGH) {
-        DoorStatus = HIGH;
+        DoorStatus = LOW;
       }
       else
       {
-        DoorStatus = LOW;
+        DoorStatus = HIGH;
       }
     }
   }
@@ -151,19 +151,20 @@ void getBluetoothData(void) {
   int state;
   if (Serial.available() > 0) { // Checks whether data is comming from the serial port
     state = Serial.read(); // Reads the data from the serial port
+    if (state == '0') {
+      //digitalWrite(OnBoardledPin, LOW); // Turn LED OFF
+      //Serial.println("LED: OFF"); // Send back, to the phone, the String "LED: ON"
+      //doorActive = 0;
+      DeviceStatus = 0;
+    }
+    else if (state == '1') {
+      //digitalWrite(OnBoardledPin, HIGH);
+      //Serial.println("LED: ON");;
+      //doorActive = 1;
+      DeviceStatus = 1;
+    }
   }
-  if (state == '0') {
-    //digitalWrite(OnBoardledPin, LOW); // Turn LED OFF
-    //Serial.println("LED: OFF"); // Send back, to the phone, the String "LED: ON"
-    //doorActive = 0;
-    DeviceStatus = 0;
-  }
-  else if (state == '1') {
-    //digitalWrite(OnBoardledPin, HIGH);
-    //Serial.println("LED: ON");;
-    //doorActive = 1;
-    DeviceStatus = 1;
-  }
+
 }
 //----------------------------------------------------------
 
@@ -214,6 +215,8 @@ void setup(void) {
   // set initial LED state
   digitalWrite(OnBoardledPin, DoorStatus);
 
+  lastReedSwState = digitalRead(ReedSwPin);
+
 
   //-------------------------------------------------------
 
@@ -221,6 +224,8 @@ void setup(void) {
   //  pinMode(OnBoard, OUTPUT);
   //  digitalWrite(OnBoardOnBoardledPin, LOW);
   Serial.begin(9600); // Default communication rate of the Bluetooth module
+
+  
 
 
 
