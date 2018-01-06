@@ -1,0 +1,1 @@
+The App labelled - Keeps the mobile awake does not let the OS to go into sleep mode and thus drains the battery very quickly. Its a very bad solution but is here for further development. 

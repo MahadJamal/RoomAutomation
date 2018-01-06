@@ -127,11 +127,11 @@ void checkReedSw(void) {
 
       // If reed switch input is high than turn LED ON
       if (ReedSwState == HIGH) {
-        DoorStatus = LOW;
+        DoorStatus = HIGH;
       }
       else
       {
-        DoorStatus = HIGH;
+        DoorStatus = LOW;
       }
     }
   }
