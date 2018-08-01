@@ -32,12 +32,13 @@
       <framework-data>
         <options>
           <option id="common.boards" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.services.delay" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.services.basic.gpio" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.services.ioport" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.utils.stdio.stdio_serial" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.drivers.pio" value="Add" config="" content-id="Atmel.ASF" />
           <option id="thirdparty.os.freertos.version" value="Add" config="7.3.0" content-id="Atmel.ASF" />
-          <option id="common.services.delay" value="Add" config="" content-id="Atmel.ASF" />
+          <option id="common.components.display_controller.ili9341" value="Add" config="" content-id="Atmel.ASF" />
           <option id="common.applications.user_application" value="Add" config="" content-id="Atmel.ASF" />
           <option id="sam.utils.cmsis.sam3x.source.template" value="Add" config="" content-id="Atmel.ASF" />
         </options>
@@ -45,6 +46,7 @@
           <configuration key="config.compiler.armgcc.printf" value="iprintf" default="iprintf" content-id="Atmel.ASF" />
           <configuration key="config.compiler.armgcc.scanf" value="iscanf" default="iscanf" content-id="Atmel.ASF" />
           <configuration key="config.sam.pio.pio_handler" value="yes" default="yes" content-id="Atmel.ASF" />
+          <configuration key="config.spi_master_type" value="standard_spi" default="standard_spi" content-id="Atmel.ASF" />
         </configurations>
         <files>
           <file path="src/main.c" framework="" version="" source="common/applications/user_application/main.c" changed="False" content-id="Atmel.ASF" />
@@ -227,6 +229,16 @@
           <file path="src/ASF/common/services/delay/sam/cycle_counter.c" framework="" version="3.35.1" source="common\services\delay\sam\cycle_counter.c" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/common/services/delay/sam/cycle_counter.h" framework="" version="3.35.1" source="common\services\delay\sam\cycle_counter.h" changed="False" content-id="Atmel.ASF" />
           <file path="src/ASF/common/services/delay/delay.h" framework="" version="3.35.1" source="common\services\delay\delay.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/components/display/ili9341/ili9341.c" framework="" version="3.35.1" source="common\components\display\ili9341\ili9341.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/components/display/ili9341/ili9341_regs.h" framework="" version="3.35.1" source="common\components\display\ili9341\ili9341_regs.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/components/display/ili9341/ili9341.h" framework="" version="3.35.1" source="common\components\display\ili9341\ili9341.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/Config/conf_ili9341.h" framework="" version="3.35.1" source="common\components\display\ili9341\module_config\sam\conf_ili9341.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/services/spi/sam_spi/spi_master.c" framework="" version="3.35.1" source="common\services\spi\sam_spi\spi_master.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/services/spi/sam_spi/spi_master.h" framework="" version="3.35.1" source="common\services\spi\sam_spi\spi_master.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/common/services/spi/spi_master.h" framework="" version="3.35.1" source="common\services\spi\spi_master.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/Config/conf_spi_master.h" framework="" version="3.35.1" source="common\services\spi\sam_spi\module_config\conf_spi_master.h" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/spi/spi.c" framework="" version="3.35.1" source="sam\drivers\spi\spi.c" changed="False" content-id="Atmel.ASF" />
+          <file path="src/ASF/sam/drivers/spi/spi.h" framework="" version="3.35.1" source="sam\drivers\spi\spi.h" changed="False" content-id="Atmel.ASF" />
         </files>
         <documentation help="http://asf.atmel.com/docs/3.35.1/common.applications.user_application.arduino_due_x/html/index.html" />
         <offline-documentation help="" />
@@ -285,6 +297,10 @@
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/common/services/delay</Value>
+      <Value>../src/ASF/common/components/display/ili9341</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize for size (-Os)</armgcc.compiler.optimization.level>
@@ -333,6 +349,10 @@
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/common/services/delay</Value>
+      <Value>../src/ASF/common/components/display/ili9341</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.preprocessingassembler.general.AssemblerFlags>-DARM_MATH_CM3=true -DBOARD=ARDUINO_DUE_X -D__SAM3X8E__ -Dprintf=iprintf -Dscanf=iscanf -D__FREERTOS__</armgcc.preprocessingassembler.general.AssemblerFlags>
@@ -364,6 +384,10 @@
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/common/services/delay</Value>
+      <Value>../src/ASF/common/components/display/ili9341</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
 </ArmGcc>
@@ -416,6 +440,10 @@
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/common/services/delay</Value>
+      <Value>../src/ASF/common/components/display/ili9341</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.compiler.directories.IncludePaths>
   <armgcc.compiler.optimization.level>Optimize (-O1)</armgcc.compiler.optimization.level>
@@ -465,6 +493,10 @@
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/common/services/delay</Value>
+      <Value>../src/ASF/common/components/display/ili9341</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.assembler.general.IncludePaths>
   <armgcc.assembler.debugging.DebugLevel>Default (-g)</armgcc.assembler.debugging.DebugLevel>
@@ -497,6 +529,10 @@
       <Value>../src/ASF/common/utils/stdio/stdio_serial</Value>
       <Value>../src/ASF/sam/drivers/usart</Value>
       <Value>../src/ASF/common/services/delay</Value>
+      <Value>../src/ASF/common/components/display/ili9341</Value>
+      <Value>../src/ASF/common/services/spi/sam_spi</Value>
+      <Value>../src/ASF/common/services/spi</Value>
+      <Value>../src/ASF/sam/drivers/spi</Value>
     </ListValues>
   </armgcc.preprocessingassembler.general.IncludePaths>
   <armgcc.preprocessingassembler.debugging.DebugLevel>Default (-Wa,-g)</armgcc.preprocessingassembler.debugging.DebugLevel>
@@ -508,6 +544,9 @@
     <Folder Include="src\ASF\" />
     <Folder Include="src\ASF\common\" />
     <Folder Include="src\ASF\common\boards\" />
+    <Folder Include="src\ASF\common\components\" />
+    <Folder Include="src\ASF\common\components\display\" />
+    <Folder Include="src\ASF\common\components\display\ili9341\" />
     <Folder Include="src\ASF\common\services\" />
     <Folder Include="src\ASF\common\services\clock\" />
     <Folder Include="src\ASF\common\services\clock\sam3x\" />
@@ -519,6 +558,8 @@
     <Folder Include="src\ASF\common\services\ioport\sam\" />
     <Folder Include="src\ASF\common\services\serial\" />
     <Folder Include="src\ASF\common\services\serial\sam_uart\" />
+    <Folder Include="src\ASF\common\services\spi\" />
+    <Folder Include="src\ASF\common\services\spi\sam_spi\" />
     <Folder Include="src\ASF\common\utils\" />
     <Folder Include="src\ASF\common\utils\interrupt\" />
     <Folder Include="src\ASF\common\utils\stdio\" />
@@ -529,6 +570,7 @@
     <Folder Include="src\ASF\sam\drivers\" />
     <Folder Include="src\ASF\sam\drivers\pio\" />
     <Folder Include="src\ASF\sam\drivers\pmc\" />
+    <Folder Include="src\ASF\sam\drivers\spi\" />
     <Folder Include="src\ASF\sam\drivers\uart\" />
     <Folder Include="src\ASF\sam\drivers\usart\" />
     <Folder Include="src\ASF\sam\utils\" />
@@ -575,6 +617,15 @@
     <None Include="src\ASF\common\services\delay\delay.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\ASF\common\components\display\ili9341\ili9341.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\common\components\display\ili9341\ili9341_regs.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\common\components\display\ili9341\ili9341.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\common\services\delay\sam\cycle_counter.c">
       <SubType>compile</SubType>
     </Compile>
@@ -584,6 +635,15 @@
     <Compile Include="src\ASF\common\services\serial\usart_serial.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\ASF\common\services\spi\sam_spi\spi_master.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\common\services\spi\sam_spi\spi_master.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\ASF\common\services\spi\spi_master.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\common\utils\stdio\read.c">
       <SubType>compile</SubType>
     </Compile>
@@ -593,6 +653,12 @@
     <Compile Include="src\ASF\common\utils\stdio\write.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\ASF\sam\drivers\spi\spi.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <None Include="src\ASF\sam\drivers\spi\spi.h">
+      <SubType>compile</SubType>
+    </None>
     <Compile Include="src\ASF\sam\drivers\uart\uart.c">
       <SubType>compile</SubType>
     </Compile>
@@ -704,9 +770,6 @@
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\component\component_wdt.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3a4c.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\instance\instance_tc1.h">
       <SubType>compile</SubType>
     </None>
@@ -815,19 +878,10 @@
     <None Include="src\ASF\sam\drivers\pio\pio.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3x4e.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3xa.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\common\boards\board.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\common\services\ioport\ioport.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3x4c.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\common\services\clock\sam3x\sysclk.h">
@@ -893,9 +947,6 @@
     <None Include="src\ASF\sam\utils\preprocessor\tpaste.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3a4c.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\component\component_pmc.h">
       <SubType>compile</SubType>
     </None>
@@ -917,19 +968,10 @@
     <None Include="src\ASF\thirdparty\CMSIS\Include\arm_common_tables.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3x4c.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3x4e.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\component\component_matrix.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\component\component_rtc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3a8c.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\instance\instance_uotghs.h">
@@ -956,9 +998,6 @@
     <Compile Include="src\ASF\common\services\clock\sam3x\sysclk.c">
       <SubType>compile</SubType>
     </Compile>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3x8c.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3x8e.h">
       <SubType>compile</SubType>
     </None>
@@ -972,9 +1011,6 @@
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\instance\instance_spi0.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3x8h.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam\boards\arduino_due_x\arduino_due_x.h">
@@ -1040,19 +1076,10 @@
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\instance\instance_pioe.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3x8h.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3x8e.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\instance\instance_ssc.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\sam3a8c.h">
-      <SubType>compile</SubType>
-    </None>
-    <None Include="src\ASF\sam\utils\cmsis\sam3x\include\pio\pio_sam3x8c.h">
       <SubType>compile</SubType>
     </None>
     <None Include="src\ASF\sam\utils\cmsis\sam3x\include\component\component_hsmci.h">
@@ -1092,6 +1119,12 @@
       <SubType>compile</SubType>
     </Compile>
     <None Include="src\config\conf_uart_serial.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\config\conf_ili9341.h">
+      <SubType>compile</SubType>
+    </None>
+    <None Include="src\config\conf_spi_master.h">
       <SubType>compile</SubType>
     </None>
     <Compile Include="src\main.c">

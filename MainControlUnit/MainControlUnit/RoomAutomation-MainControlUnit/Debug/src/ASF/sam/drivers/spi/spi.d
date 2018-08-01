@@ -1,4 +1,5 @@
-src/main.d src/main.o: ../src/main.c ../src/asf.h \
+src/ASF/sam/drivers/spi/spi.d src/ASF/sam/drivers/spi/spi.o: \
+ ../src/ASF/sam/drivers/spi/spi.c ../src/ASF/sam/drivers/spi/spi.h \
  ../src/ASF/sam/utils/compiler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  ../src/ASF/common/utils/parts.h \
@@ -117,8 +118,6 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-none-eabi\include\alloca.h \
  ../src/ASF/common/utils/interrupt.h \
  ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h \
- ../src/ASF/sam/utils/status_codes.h \
- ../src/ASF/common/services/delay/delay.h \
  ../src/ASF/common/services/clock/sysclk.h ../src/config/conf_clock.h \
  ../src/ASF/common/services/clock/sam3x/sysclk.h \
  ../src/ASF/common/services/clock/osc.h \
@@ -127,47 +126,9 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/sam/boards/arduino_due_x/arduino_due_x.h \
  ../src/ASF/sam/utils/cmsis/sam3x/source/templates/exceptions.h \
  ../src/ASF/sam/drivers/pmc/pmc.h ../src/ASF/common/services/clock/pll.h \
- ../src/ASF/common/services/clock/sam3x/pll.h \
- ../src/ASF/common/services/delay/sam/cycle_counter.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h \
- ../src/config/FreeRTOSConfig.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam/portmacro.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS_CLI.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/StackMacros.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/croutine.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/semphr.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/timers.h \
- ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h \
- ../src/ASF/common/services/gpio/gpio.h \
- ../src/ASF/common/services/gpio/sam_gpio/sam_gpio.h \
- ../src/ASF/sam/drivers/pio/pio.h \
- ../src/ASF/common/services/ioport/ioport.h \
- ../src/ASF/common/services/ioport/sam/ioport_pio.h \
- ../src/ASF/common/components/display/ili9341/ili9341.h \
- ../src/config/conf_ili9341.h \
- ../src/ASF/sam/boards/arduino_due_x/arduino_due_x.h \
- ../src/ASF/common/services/spi/sam_spi/spi_master.h \
- ../src/ASF/sam/drivers/spi/spi.h ../src/config/conf_spi_master.h \
- ../src/ASF/sam/drivers/pmc/sleep.h \
- ../src/ASF/common/utils/stdio/stdio_serial/stdio_serial.h \
- ../src/ASF/common/services/serial/serial.h \
- ../src/ASF/common/services/serial/sam_uart/uart_serial.h \
- ../src/ASF/sam/drivers/uart/uart.h ../src/ASF/sam/drivers/usart/usart.h \
- ../src/config/conf_uart_serial.h \
- ../src/ASF/sam/drivers/pio/pio_handler.h ../src/config/conf_board.h
+ ../src/ASF/common/services/clock/sam3x/pll.h
 
-../src/asf.h:
+../src/ASF/sam/drivers/spi/spi.h:
 
 ../src/ASF/sam/utils/compiler.h:
 
@@ -405,10 +366,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/common/utils/interrupt/interrupt_sam_nvic.h:
 
-../src/ASF/sam/utils/status_codes.h:
-
-../src/ASF/common/services/delay/delay.h:
-
 ../src/ASF/common/services/clock/sysclk.h:
 
 ../src/config/conf_clock.h:
@@ -430,85 +387,3 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/ASF/common/services/clock/pll.h:
 
 ../src/ASF/common/services/clock/sam3x/pll.h:
-
-../src/ASF/common/services/delay/sam/cycle_counter.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h:
-
-../src/config/FreeRTOSConfig.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/portable/gcc/sam/portmacro.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS_CLI.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/StackMacros.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/croutine.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/list.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/mpu_wrappers.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/portable.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/semphr.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/queue.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/timers.h:
-
-../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/task.h:
-
-../src/ASF/common/services/gpio/gpio.h:
-
-../src/ASF/common/services/gpio/sam_gpio/sam_gpio.h:
-
-../src/ASF/sam/drivers/pio/pio.h:
-
-../src/ASF/common/services/ioport/ioport.h:
-
-../src/ASF/common/services/ioport/sam/ioport_pio.h:
-
-../src/ASF/common/components/display/ili9341/ili9341.h:
-
-../src/config/conf_ili9341.h:
-
-../src/ASF/sam/boards/arduino_due_x/arduino_due_x.h:
-
-../src/ASF/common/services/spi/sam_spi/spi_master.h:
-
-../src/ASF/sam/drivers/spi/spi.h:
-
-../src/config/conf_spi_master.h:
-
-../src/ASF/sam/drivers/pmc/sleep.h:
-
-../src/ASF/common/utils/stdio/stdio_serial/stdio_serial.h:
-
-../src/ASF/common/services/serial/serial.h:
-
-../src/ASF/common/services/serial/sam_uart/uart_serial.h:
-
-../src/ASF/sam/drivers/uart/uart.h:
-
-../src/ASF/sam/drivers/usart/usart.h:
-
-../src/config/conf_uart_serial.h:
-
-../src/ASF/sam/drivers/pio/pio_handler.h:
-
-../src/config/conf_board.h:

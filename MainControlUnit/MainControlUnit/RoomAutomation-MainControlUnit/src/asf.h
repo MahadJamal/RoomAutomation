@@ -85,6 +85,9 @@
 // From module: Interrupt management - SAM implementation
 #include <interrupt.h>
 
+// From module: LCD - ILI9341 Display Controller
+#include <ili9341.h>
+
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>
 
@@ -97,6 +100,13 @@
 
 // From module: SAM3X startup code
 #include <exceptions.h>
+
+// From module: SPI - SAM Implementation
+#include <spi_master.h>
+#include <spi_master.h>
+
+// From module: SPI - Serial Peripheral Interface
+#include <spi.h>
 
 // From module: Standard serial I/O (stdio) - SAM implementation
 #include <stdio_serial.h>
