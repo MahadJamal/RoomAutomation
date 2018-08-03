@@ -57,6 +57,10 @@ void config_console_uart(void)
 	
 }
 
+//-------------Write a function which initializes your Connections----//
+
+
+//--------------------------------------------------------------------//
 
 
 int main (void)
@@ -70,26 +74,60 @@ int main (void)
 	config_console_uart();
 	
 	//printf("This is Arduino Console UART Application.\n");
-	ili9341_init();
 	
-	gpio_configure_pin(PIO_PC23_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
-	gpio_configure_pin(PIO_PC24_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
-	gpio_configure_pin(PIO_PC25_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+	
+		//GPIOS INITIALIZATION AS OUTPUT FOR DC/RESET/LED <- Will go into the function to init my connections
+		pmc_enable_periph_clk(ID_PIOC);
+		pmc_enable_periph_clk(ID_PIOA);
+		
+		gpio_configure_pin(PIO_PC23_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+		gpio_configure_pin(PIO_PC24_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+		gpio_configure_pin(PIO_PC25_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+		gpio_configure_pin(PIO_PC28_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+		
+		pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA25A_SPI0_MISO);
+		pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA26A_SPI0_MOSI);
+		pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA27A_SPI0_SPCK);
+		pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA28A_SPI0_NPCS0);
+		
+		pmc_enable_periph_clk(ID_SPI0);
+		
+		
+		spi_master_init(SPI0);
+		
+		//gpio_configure_pin(SPI0_NPCS0_GPIO ,SPI0_NPCS0_FLAGS);
+	
+
+	ili9341_init();
+	//spi_select_device(SPI0, 0);
+	
+	//spi_enable_clock(SPI0);
+	spi_enable(SPI0);
 	
 	while (1)
 	{
-		//ili9341_backlight_on();
-		//delay_ms(500);
-		//ili9341_backlight_off();
-		//delay_ms(500);
+		ili9341_backlight_off();
+		delay_ms(500);
+		ili9341_backlight_on();
+		delay_ms(500);
 		
-			 ili9341_set_top_left_limit(0, 0);
-			 ili9341_set_bottom_right_limit(240, 320);
+		ili9341_set_top_left_limit(0, 0);
+		ili9341_set_bottom_right_limit(360, 240);
 
-			 ili9341_duplicate_pixel(ILI9341_COLOR(255, 0, 0), 240UL * 320UL);
+		ili9341_duplicate_pixel(ILI9341_COLOR(255, 0, 0), 240UL * 320UL);
+		
+		
+		ili9341_set_top_left_limit(0, 0);
+		ili9341_set_bottom_right_limit(240, 320);
+		ili9341_duplicate_pixel(ILI9341_COLOR(0, 255, 0), 240UL * 320UL);
+		
+		delay_ms(100);
+		spi_write_single(CONF_ILI9341_SPI, 34); 
+	    delay_ms(500);
+		//spi_disable(SPI0);
 		//ioport_toggle_pin_level();
 		//ioport_toggle_pin_level(CONF_ILI9341_BACKLIGHT_PIN);
-		ioport_toggle_pin_level(LED0_GPIO);
+		//ioport_toggle_pin_level(LED0_GPIO);
 		//ILI9341_CMD_COLOR_SET();
 		
 	}

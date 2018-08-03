@@ -79,7 +79,8 @@
 /* #define CONF_ILI9341_USART_SPI    UART0 */
 
 /** \brief Define what MCU pin the ILI9341 chip select pin is connected to */
-#define CONF_ILI9341_CS_PIN        SPI0_NPCS0_GPIO  //PA28
+//#define CONF_ILI9341_CS_PIN        SPI0_NPCS0_GPIO  //PA28
+#define CONF_ILI9341_CS_PIN        PIO_PC28_IDX
 
 /** \brief Define what MCU pin the ILI9341 DC pin is connected to */
 #define CONF_ILI9341_DC_PIN        PIO_PC23_IDX

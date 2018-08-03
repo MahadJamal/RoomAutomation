@@ -632,6 +632,8 @@ void ili9341_copy_pixels_from_screen(ili9341_color_t *pixels, uint32_t count)
  */
 static void ili9341_interface_init(void)
 {
+
+	
 #if defined(CONF_ILI9341_USART_SPI) || defined(CONF_ILI9341_SPI)
 	spi_flags_t spi_flags = SPI_MODE_0;
 	board_spi_select_id_t spi_select_id = 0;
