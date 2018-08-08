@@ -6,9 +6,43 @@ src\ASF\common\components\display\ili9341\ili9341.c
 
 src\ASF\common\services\delay\sam\cycle_counter.c
 
+src\ASF\common\services\gfx\gfx_generic.c
+
+src\ASF\common\services\gfx\gfx_ili9341_sdt028atft.c
+
+src\ASF\common\services\gfx\gfx_text.c
+
+src\ASF\common\services\gfx\sysfont.c
+
 src\ASF\common\services\serial\usart_serial.c
 
 src\ASF\common\services\spi\sam_spi\spi_master.c
+
+src\ASF\common\services\wtk\win.c
+
+src\ASF\common\services\wtk\wtk.c
+
+src\ASF\common\services\wtk\wtk_basic_frame.c
+
+src\ASF\common\services\wtk\wtk_button.c
+
+src\ASF\common\services\wtk\wtk_check_box.c
+
+src\ASF\common\services\wtk\wtk_frame.c
+
+src\ASF\common\services\wtk\wtk_icon.c
+
+src\ASF\common\services\wtk\wtk_label.c
+
+src\ASF\common\services\wtk\wtk_plot.c
+
+src\ASF\common\services\wtk\wtk_progress_bar.c
+
+src\ASF\common\services\wtk\wtk_radio_button.c
+
+src\ASF\common\services\wtk\wtk_slider.c
+
+src\ASF\common\utils\membag\membag.c
 
 src\ASF\common\utils\stdio\read.c
 

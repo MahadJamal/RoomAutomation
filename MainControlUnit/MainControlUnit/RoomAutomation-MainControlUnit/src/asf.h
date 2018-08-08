@@ -73,11 +73,21 @@
 #include <task.h>
 #include <timers.h>
 
+// From module: GFX Color - Color Graphic Library
+#include <gfx.h>
+
+// From module: GFX Color - System Font
+#include <sysfont.h>
+
 // From module: GPIO - General purpose Input/Output
 #include <gpio.h>
 
 // From module: Generic board support
 #include <board.h>
+
+// From module: Graphical Widget Library Toolkit
+#include <win.h>
+#include <wtk.h>
 
 // From module: IOPORT - General purpose I/O service
 #include <ioport.h>
@@ -87,6 +97,9 @@
 
 // From module: LCD - ILI9341 Display Controller
 #include <ili9341.h>
+
+// From module: MEMBAG Memory Bag Allocator
+#include <membag.h>
 
 // From module: PIO - Parallel Input/Output Controller
 #include <pio.h>

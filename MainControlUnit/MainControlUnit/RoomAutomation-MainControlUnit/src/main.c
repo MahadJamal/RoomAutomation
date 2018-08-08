@@ -35,7 +35,7 @@
 #include "conf_ili9341.h"
 #include "conf_spi_master.h"
 #include "stdio_serial.h"
-
+#include "conf_sysfont.h"
 
 
 
@@ -97,8 +97,11 @@ int main (void)
 		
 		//gpio_configure_pin(SPI0_NPCS0_GPIO ,SPI0_NPCS0_FLAGS);
 	
-
+	
+	 char * str ="hello";
 	ili9341_init();
+	
+	gfx_init();
 	//spi_select_device(SPI0, 0);
 	
 	//spi_enable_clock(SPI0);
@@ -115,6 +118,11 @@ int main (void)
 		ili9341_set_bottom_right_limit(360, 240);
 
 		ili9341_duplicate_pixel(ILI9341_COLOR(255, 0, 0), 240UL * 320UL);
+		
+		gfx_draw_rect(200,150, 50,70,GFX_COLOR_BLUE);
+		gfx_draw_string(&str,30, 50, sysfont  , GFX_COLOR_DK_CYAN, GFX_COLOR_BLACK);
+		delay_ms(1000);
+		
 		
 		
 		ili9341_set_top_left_limit(0, 0);
