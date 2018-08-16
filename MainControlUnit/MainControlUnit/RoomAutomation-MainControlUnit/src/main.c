@@ -36,6 +36,8 @@
 #include "conf_spi_master.h"
 #include "stdio_serial.h"
 #include "conf_sysfont.h"
+#include "atmel_logo_small.h"
+#include "AddWidget.h"
 
 
 
@@ -99,6 +101,8 @@ int main (void)
 	
 	
 	 char * str ="hello";
+	 membag_init();
+	 
 	ili9341_init();
 	
 	gfx_init();
@@ -107,31 +111,63 @@ int main (void)
 	//spi_enable_clock(SPI0);
 	spi_enable(SPI0);
 	
+	//struct win_window wx;
+	
+	win_init();
+	
+	struct win_attributes root_attr;
+	struct win_window *win_root;
+
+	win_root = win_get_root();
+	root_attr = *win_get_attributes(win_root);
+	root_attr.background = &atmel_logo_small;
+	win_set_attributes(win_root, &root_attr, WIN_ATTR_BACKGROUND);
+
+	win_show(win_root);
+	
+	//wx = win_get_root();
+	
+	app_widget_launch();
+	
+	
+//	struct wtk_button btn;
+	
+//	struct win_area area;
+	
+	//wx = win_get_parent(wx)
+	//ili9341_set_orientation(ILI9341_SWITCH_XY);
 	while (1)
 	{
-		ili9341_backlight_off();
-		delay_ms(500);
+		
 		ili9341_backlight_on();
-		delay_ms(500);
-		
-		ili9341_set_top_left_limit(0, 0);
-		ili9341_set_bottom_right_limit(360, 240);
 
-		ili9341_duplicate_pixel(ILI9341_COLOR(255, 0, 0), 240UL * 320UL);
 		
-		gfx_draw_rect(200,150, 50,70,GFX_COLOR_BLUE);
-		gfx_draw_string(&str,30, 50, sysfont  , GFX_COLOR_DK_CYAN, GFX_COLOR_BLACK);
+		//ili9341_set_top_left_limit(0, 0);
+		//ili9341_set_bottom_right_limit(360, 240);
+
+		//ili9341_duplicate_pixel(ILI9341_COLOR(255, 0, 0), 240UL * 320UL);
+		
+		//gfx_draw_rect(200,150, 50,70,GFX_COLOR_BLUE);
+		
+		//gfx_draw_string(str,30, 50, &sysfont  , GFX_COLOR_DK_CYAN, GFX_COLOR_BLACK);
+		
+		//gfx_draw_string_aligned(str,250, 240, &sysfont  , GFX_COLOR_DK_CYAN, GFX_COLOR_BLACK,TEXT_POS_BOTTOM,TEXT_ALIGN_CENTER);
+		
+		
+//		area.pos.x = 10;
+//		area.pos.y = 150;
+//		area.size.x = 90;
+//		area.size.y = 40;
+//		btn = wtk_button_create(wx, &area, "Click",
+//		(win_command_t)1);
+//		if (!btn) {
+			//goto error_widget;
+//		}
+//		win_show(wtk_button_as_child(btn));
+		
 		delay_ms(1000);
 		
-		
-		
-		ili9341_set_top_left_limit(0, 0);
-		ili9341_set_bottom_right_limit(240, 320);
-		ili9341_duplicate_pixel(ILI9341_COLOR(0, 255, 0), 240UL * 320UL);
-		
-		delay_ms(100);
-		spi_write_single(CONF_ILI9341_SPI, 34); 
-	    delay_ms(500);
+
 		//spi_disable(SPI0);
 		//ioport_toggle_pin_level();
 		//ioport_toggle_pin_level(CONF_ILI9341_BACKLIGHT_PIN);

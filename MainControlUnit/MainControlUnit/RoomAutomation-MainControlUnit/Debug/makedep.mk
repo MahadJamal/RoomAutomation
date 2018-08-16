@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\AddWidget.c
+
 src\ASF\common\components\display\ili9341\ili9341.c
 
 src\ASF\common\services\delay\sam\cycle_counter.c
@@ -89,6 +91,8 @@ src\ASF\sam\utils\cmsis\sam3x\source\templates\gcc\startup_sam3x.c
 src\ASF\sam\utils\cmsis\sam3x\source\templates\system_sam3x.c
 
 src\ASF\sam\utils\syscalls\gcc\syscalls.c
+
+src\LCDFunctions.c
 
 src\main.c
 

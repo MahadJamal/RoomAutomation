@@ -48,11 +48,20 @@
 #define CONF_MEMBAG_H
 
 #include <membag.h>
-
+/*
 #define CONF_MEMBAG_ARRAY\
 	MEMBAG(16, 5),\
 	MEMBAG(64, 2),\
-	MEMBAG(128, 10),
+	MEMBAG(128, 10),\
+	MEMBAG(32, 4),\
+	MEMBAG(16, 2)
+*/
+
+#define CONF_MEMBAG_ARRAY \
+	MEMBAG(16,  32),      \
+	MEMBAG(32,  32),      \
+	MEMBAG(64,   4),      \
+	MEMBAG(128,  4),
 
 #define CONF_MEMBAG_POOL_SIZE\
 	MEMBAG_SIZE(16, 5) +\

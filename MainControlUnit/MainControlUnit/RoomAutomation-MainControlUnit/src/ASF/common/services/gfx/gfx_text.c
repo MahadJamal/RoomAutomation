@@ -56,6 +56,7 @@
 #include "gfx.h"
 #include "gfx_text.h"
 
+
 #ifndef CONFIG_FONT_PIXELS_PER_BYTE
 # define CONFIG_FONT_PIXELS_PER_BYTE    8
 #endif
