@@ -1,7 +1,18 @@
+/*
+ * widget_gui.h
+ *
+ * Created: 8/21/2018 8:10:43 PM
+ *  Author: Mahad Jamal
+ */ 
+
+
+#ifndef WIDGET_GUI_H_
+#define WIDGET_GUI_H_
+
 /**
  * \file
  *
- * \brief Membag configuration header
+ * \brief Graphic library example application
  *
  * Copyright (c) 2014-2015 Atmel Corporation. All rights reserved.
  *
@@ -44,21 +55,10 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 
-#ifndef CONF_MEMBAG_H
-#define CONF_MEMBAG_H
 
-#include <membag.h>
 
-#define CONF_MEMBAG_ARRAY\
-	MEMBAG(16, 5),\
-	MEMBAG(64, 2),\
-	MEMBAG(128, 10),\
-	MEMBAG(32, 4),\
-	MEMBAG(16, 2)
+bool app_widget_launch(void);
 
-#define CONF_MEMBAG_POOL_SIZE\
-	MEMBAG_SIZE(16, 5) +\
-	MEMBAG_SIZE(64, 2) +\
-	MEMBAG_SIZE(128, 10)
+#endif /* WIDGET_GUI_H_ */
 
-#endif /* CONF_MEMBAG_H */
+

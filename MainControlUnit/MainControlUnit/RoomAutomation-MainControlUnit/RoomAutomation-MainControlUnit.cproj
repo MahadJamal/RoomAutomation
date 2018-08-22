@@ -688,6 +688,21 @@
     <Folder Include="src\config\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\chip_icon1.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\chip_icon2.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\chip_icon3.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\widget_gui.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\widget_gui.h">
+      <SubType>compile</SubType>
+    </Compile>
     <None Include="src\ASF\common\services\serial\sam_uart\uart_serial.h">
       <SubType>compile</SubType>
     </None>
@@ -1333,7 +1348,16 @@
     <Compile Include="src\config\atmel_logo_small.h">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\LCDFunctions.c">
+    <Compile Include="src\LCD.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\LCD.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\LCDpages.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\LCDpages.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">

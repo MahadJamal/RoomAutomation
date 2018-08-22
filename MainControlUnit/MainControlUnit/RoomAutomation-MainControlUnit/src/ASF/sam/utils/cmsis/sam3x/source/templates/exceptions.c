@@ -227,9 +227,10 @@ void CAN1_Handler       ( void ) __attribute__ ((weak, alias("Dummy_Handler")));
 /**
  * \brief Default interrupt handler for unused IRQs.
  */
-void Dummy_Handler(void)
+int Dummy_Handler(void)
 {
 	while (1) {
+		return 1;
 	}
 }
 

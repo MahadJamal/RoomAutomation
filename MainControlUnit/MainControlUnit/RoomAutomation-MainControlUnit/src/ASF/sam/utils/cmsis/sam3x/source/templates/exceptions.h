@@ -61,7 +61,7 @@ extern "C" {
 typedef void (*IntFunc) (void);
 
 /* Default empty handler */
-void Dummy_Handler(void);
+int Dummy_Handler(void);
 
 /* @cond 0 */
 /**INDENT-OFF**/

@@ -106,6 +106,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../src/widget_gui.c \
 ../src/AddWidget.c \
 ../src/ASF/common/components/display/ili9341/ili9341.c \
 ../src/ASF/common/services/delay/sam/cycle_counter.c \
@@ -151,7 +152,8 @@ C_SRCS +=  \
 ../src/ASF/sam/utils/cmsis/sam3x/source/templates/gcc/startup_sam3x.c \
 ../src/ASF/sam/utils/cmsis/sam3x/source/templates/system_sam3x.c \
 ../src/ASF/sam/utils/syscalls/gcc/syscalls.c \
-../src/LCDFunctions.c \
+../src/LCD.c \
+../src/LCDpages.c \
 ../src/main.c
 
 
@@ -162,6 +164,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+src/widget_gui.o \
 src/AddWidget.o \
 src/ASF/common/components/display/ili9341/ili9341.o \
 src/ASF/common/services/delay/sam/cycle_counter.o \
@@ -207,10 +210,12 @@ src/ASF/sam/utils/cmsis/sam3x/source/templates/exceptions.o \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/gcc/startup_sam3x.o \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/system_sam3x.o \
 src/ASF/sam/utils/syscalls/gcc/syscalls.o \
-src/LCDFunctions.o \
+src/LCD.o \
+src/LCDpages.o \
 src/main.o
 
 OBJS_AS_ARGS +=  \
+src/widget_gui.o \
 src/AddWidget.o \
 src/ASF/common/components/display/ili9341/ili9341.o \
 src/ASF/common/services/delay/sam/cycle_counter.o \
@@ -256,10 +261,12 @@ src/ASF/sam/utils/cmsis/sam3x/source/templates/exceptions.o \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/gcc/startup_sam3x.o \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/system_sam3x.o \
 src/ASF/sam/utils/syscalls/gcc/syscalls.o \
-src/LCDFunctions.o \
+src/LCD.o \
+src/LCDpages.o \
 src/main.o
 
 C_DEPS +=  \
+src/widget_gui.d \
 src/AddWidget.d \
 src/ASF/common/components/display/ili9341/ili9341.d \
 src/ASF/common/services/delay/sam/cycle_counter.d \
@@ -305,10 +312,12 @@ src/ASF/sam/utils/cmsis/sam3x/source/templates/exceptions.d \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/gcc/startup_sam3x.d \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/system_sam3x.d \
 src/ASF/sam/utils/syscalls/gcc/syscalls.d \
-src/LCDFunctions.d \
+src/LCD.d \
+src/LCDpages.d \
 src/main.d
 
 C_DEPS_AS_ARGS +=  \
+src/widget_gui.d \
 src/AddWidget.d \
 src/ASF/common/components/display/ili9341/ili9341.d \
 src/ASF/common/services/delay/sam/cycle_counter.d \
@@ -354,7 +363,8 @@ src/ASF/sam/utils/cmsis/sam3x/source/templates/exceptions.d \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/gcc/startup_sam3x.d \
 src/ASF/sam/utils/cmsis/sam3x/source/templates/system_sam3x.d \
 src/ASF/sam/utils/syscalls/gcc/syscalls.d \
-src/LCDFunctions.d \
+src/LCD.d \
+src/LCDpages.d \
 src/main.d
 
 OUTPUT_FILE_PATH +=RoomAutomation-MainControlUnit.elf
@@ -372,6 +382,10 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+
+
+
+
 
 
 

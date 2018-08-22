@@ -1,4 +1,4 @@
-src/main.d src/main.o: ../src/main.c ../src/asf.h \
+src/LCD.d src/LCD.o: ../src/LCD.c ../src/asf.h \
  ../src/ASF/sam/utils/compiler.h \
  c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\lib\gcc\arm-none-eabi\6.3.1\include\stddef.h \
  ../src/ASF/common/utils/parts.h \
@@ -184,8 +184,8 @@ src/main.d src/main.o: ../src/main.c ../src/asf.h \
  ../src/ASF/common/services/serial/sam_uart/uart_serial.h \
  ../src/ASF/sam/drivers/uart/uart.h ../src/ASF/sam/drivers/usart/usart.h \
  ../src/config/conf_uart_serial.h \
- ../src/ASF/sam/drivers/pio/pio_handler.h ../src/config/conf_board.h \
- ../src/LCD.h ../src/widget_gui.h
+ ../src/ASF/sam/drivers/pio/pio_handler.h \
+ ../src/config/atmel_logo_small.h ../src/LCDpages.h
 
 ../src/asf.h:
 
@@ -577,8 +577,6 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 
 ../src/ASF/sam/drivers/pio/pio_handler.h:
 
-../src/config/conf_board.h:
+../src/config/atmel_logo_small.h:
 
-../src/LCD.h:
-
-../src/widget_gui.h:
+../src/LCDpages.h:

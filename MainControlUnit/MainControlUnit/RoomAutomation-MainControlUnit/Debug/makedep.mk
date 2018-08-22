@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\widget_gui.c
+
 src\AddWidget.c
 
 src\ASF\common\components\display\ili9341\ili9341.c
@@ -92,7 +94,9 @@ src\ASF\sam\utils\cmsis\sam3x\source\templates\system_sam3x.c
 
 src\ASF\sam\utils\syscalls\gcc\syscalls.c
 
-src\LCDFunctions.c
+src\LCD.c
+
+src\LCDpages.c
 
 src\main.c
 
