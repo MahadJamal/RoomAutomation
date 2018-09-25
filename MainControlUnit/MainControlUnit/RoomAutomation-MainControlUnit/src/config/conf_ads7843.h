@@ -1,9 +1,9 @@
 /**
  * \file
  *
- * \brief ILI9341 display controller component driver default config header
+ * \brief Configuration for the ADS7843 component.
  *
- * Copyright (c) 2014-2015 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2011-2015 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -43,54 +43,28 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-#ifndef CONF_ILI9341_H_INCLUDED
-#define CONF_ILI9341_H_INCLUDED
 
-#include <compiler.h>
+//! Configuration of the ADS7843 touch driver
+
+#ifndef CONF_ADS7843_H_INCLUDED
+#define CONF_ADS7843_H_INCLUDED
+
+#include "board.h"
 #include "arduino_due_x.h"
+#include "sam3x8e.h"
 
-/**
- * \brief Select a SPI clock speed
- *
- * This selects the clock speed for the SPI clock used to communicate with the
- * display controller. Higher clock speeds allow for higher frame rates.
- * \note That the clock speed may be limited by the speed of the
- * microcontroller a normal limitation would be CPUclk/2. For more details
- * please refer to the device datasheet.
- */
-#define CONF_ILI9341_CLOCK_SPEED   8000000UL
+#if !defined(BOARD_ADS7843_SPI_NPCS) || \
+	!defined(BOARD_ADS7843_IRQ_GPIO) || \
+	!defined(BOARD_ADS7843_IRQ_FLAGS) || \
+	!defined(BOARD_ADS7843_SPI_BASE)
 
-/**
- * \name SAM typical configurations
- * @{
- */
+	#warning The ADS7843 SPI configuration does not exist in the board definition file. Using default settings.
 
-/**
- * \brief Select the correct hardware interface
- *
- * Currently supported interfaces are the SPI interface and the USART Master SPI
- * interface.
- */
-#if defined(SPI0)
-#  define CONF_ILI9341_SPI         SPI0
-#else
-#  define CONF_ILI9341_SPI         SPI
+	#define BOARD_ADS7843_SPI_BASE    SPI0 /* SPI instance, which can be SPI, SPI0 or SPI1, depends on which SPI channel is used by ADS7843. */
+	#define BOARD_ADS7843_SPI_NPCS    1 //PIO_PA29_IDX /* SPI chip select number, depends on which SPI CS pin is used by ADS7843. */
+	#define BOARD_ADS7843_IRQ_GPIO    PIO_PC28_IDX /* PIN index, depends on which pin is connnected with nPENIRQ of ADS7843 */
+	#define BOARD_ADS7843_IRQ_FLAGS   (PIO_INPUT | PIO_PULLUP) /* PIO type and attribute of the pin connected with nPENIRQ, normally should be (PIO_INPUT | PIO_PULLUP) */
+
 #endif
-/* #define CONF_ILI9341_USART_SPI    UART0 */
 
-/** \brief Define what MCU pin the ILI9341 chip select pin is connected to */
-//#define CONF_ILI9341_CS_PIN        SPI0_NPCS0_GPIO  //PA28
-#define CONF_ILI9341_CS_PIN        PIO_PA28_IDX
-
-/** \brief Define what MCU pin the ILI9341 DC pin is connected to */
-#define CONF_ILI9341_DC_PIN        PIO_PC23_IDX
-
-/** \brief Define what MCU pin the ILI9341 back light pin is connected to */
-#define CONF_ILI9341_BACKLIGHT_PIN PIO_PC24_IDX
-
-/** \brief Define what MCU pin the ILI9341 reset is connected to */
-#define CONF_ILI9341_RESET_PIN     PIO_PC25_IDX
-
-/** @} */
-
-#endif /* CONF_ILI9341_H_INCLUDED */
+#endif /* CONF_ADS7843_H_INCLUDED */

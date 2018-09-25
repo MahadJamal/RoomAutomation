@@ -1,9 +1,9 @@
 /**
  * \file
  *
- * \brief ILI9341 display controller component driver default config header
+ * \brief API driver for component ADS7843.
  *
- * Copyright (c) 2014-2015 Atmel Corporation. All rights reserved.
+ * Copyright (c) 2011-2015 Atmel Corporation. All rights reserved.
  *
  * \asf_license_start
  *
@@ -43,54 +43,77 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-#ifndef CONF_ILI9341_H_INCLUDED
-#define CONF_ILI9341_H_INCLUDED
 
-#include <compiler.h>
-#include "arduino_due_x.h"
+#ifndef ADS7843_H_INCLUDED
+#define ADS7843_H_INCLUDED
 
-/**
- * \brief Select a SPI clock speed
- *
- * This selects the clock speed for the SPI clock used to communicate with the
- * display controller. Higher clock speeds allow for higher frame rates.
- * \note That the clock speed may be limited by the speed of the
- * microcontroller a normal limitation would be CPUclk/2. For more details
- * please refer to the device datasheet.
- */
-#define CONF_ILI9341_CLOCK_SPEED   8000000UL
+#include "compiler.h"
 
-/**
- * \name SAM typical configurations
- * @{
- */
-
-/**
- * \brief Select the correct hardware interface
- *
- * Currently supported interfaces are the SPI interface and the USART Master SPI
- * interface.
- */
-#if defined(SPI0)
-#  define CONF_ILI9341_SPI         SPI0
-#else
-#  define CONF_ILI9341_SPI         SPI
+/** @cond 0*/
+/**INDENT-OFF**/
+#ifdef __cplusplus
+extern "C" {
 #endif
-/* #define CONF_ILI9341_USART_SPI    UART0 */
+/**INDENT-ON**/
+/** @endcond*/
 
-/** \brief Define what MCU pin the ILI9341 chip select pin is connected to */
-//#define CONF_ILI9341_CS_PIN        SPI0_NPCS0_GPIO  //PA28
-#define CONF_ILI9341_CS_PIN        PIO_PA28_IDX
+/**
+ * \defgroup sam_component_ads7843_group Resistive Touch - ADS7843 Controller
+ *
+ * Low-level driver for the ADS7843 touch controller. This driver provides
+ * access to the main features of the ADS7843 controller.
+ *
+ * \{
+ */
 
-/** \brief Define what MCU pin the ILI9341 DC pin is connected to */
-#define CONF_ILI9341_DC_PIN        PIO_PC23_IDX
+/**
+ * \brief Return the touch screen status, pressed or not.
+ *
+ * \return 1 if the touchscreen is pressed, 0 otherwise.
+ */
+uint32_t ads7843_is_pressed(void);
 
-/** \brief Define what MCU pin the ILI9341 back light pin is connected to */
-#define CONF_ILI9341_BACKLIGHT_PIN PIO_PC24_IDX
+/**
+ * \brief Set the touch interrupt handler.
+ *
+ * \note This handler will be called whenever a touch event is detected by the
+ * ADS7843 controller.
+ *
+ * \param p_handler Interrupt handler function pointer.
+ */
+void ads7843_set_handler(void (*p_handler) (uint32_t, uint32_t));
 
-/** \brief Define what MCU pin the ILI9341 reset is connected to */
-#define CONF_ILI9341_RESET_PIN     PIO_PC25_IDX
+/**
+ * \brief Enable interrupts on touch event.
+ */
+void ads7843_enable_interrupt(void);
 
-/** @} */
+/**
+ * \brief Disable interrupts on touch event.
+ */
+void ads7843_disable_interrupt(void);
 
-#endif /* CONF_ILI9341_H_INCLUDED */
+/**
+ * \brief Get the touch raw coordinates.
+ *
+ * \param p_x Pointer to an integer representing the X value.
+ * \param p_y Pointer to an integer representing the Y value.
+ */
+void ads7843_get_raw_point(uint32_t *p_x, uint32_t *p_y);
+
+/**
+ * \brief Initialize the SPI communication with the ADS7843 controller.
+ */
+uint32_t ads7843_init(void);
+
+/**@}*/
+
+/** @cond 0*/
+/**INDENT-OFF**/
+#ifdef __cplusplus
+}
+#endif
+/**INDENT-ON**/
+/** @endcond*/
+
+#endif /* ADS7843_H_INCLUDED */

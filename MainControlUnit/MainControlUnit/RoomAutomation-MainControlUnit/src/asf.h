@@ -59,6 +59,9 @@
 // From module: Delay routines
 #include <delay.h>
 
+// From module: Display - ADS7843 Touch Controller
+#include <ads7843.h>
+
 // From module: FreeRTOS mini Real-Time Kernel
 #include <FreeRTOS.h>
 #include <FreeRTOS_CLI.h>

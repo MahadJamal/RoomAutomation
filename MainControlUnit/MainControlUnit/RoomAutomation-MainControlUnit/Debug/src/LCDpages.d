@@ -129,6 +129,7 @@ src/LCDpages.d src/LCDpages.o: ../src/LCDpages.c ../src/LCDpages.h \
  ../src/ASF/sam/drivers/pmc/pmc.h ../src/ASF/common/services/clock/pll.h \
  ../src/ASF/common/services/clock/sam3x/pll.h \
  ../src/ASF/common/services/delay/sam/cycle_counter.h \
+ ../src/ASF/sam/components/resistive_touch/ads7843/ads7843.h \
  ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h \
  ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/projdefs.h \
  ../src/config/FreeRTOSConfig.h \
@@ -453,6 +454,8 @@ c:\program\ files\ (x86)\atmel\studio\7.0\toolchain\arm\arm-gnu-toolchain\arm-no
 ../src/ASF/common/services/clock/sam3x/pll.h:
 
 ../src/ASF/common/services/delay/sam/cycle_counter.h:
+
+../src/ASF/sam/components/resistive_touch/ads7843/ads7843.h:
 
 ../src/ASF/thirdparty/freertos/freertos-7.3.0/source/include/FreeRTOS.h:
 

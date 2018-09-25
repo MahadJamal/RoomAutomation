@@ -38,6 +38,7 @@
 #include "conf_sysfont.h"
 //#include "AddWidget.h"
 #include "LCD.h"
+#include "ads7843.h"
 
 #include "widget_gui.h"
 
@@ -67,6 +68,16 @@ void config_console_uart(void)
 //--------------------------------------------------------------------//
 
 
+//----------------Handler Function------------------------------------//
+void piohandler(uint32_t p_x, uint32_t p_y)
+{
+	
+	//printf("PIO handler running %d, %d\n", p_x,p_y);
+	printf("PIO handle.\n");
+}
+
+
+
 int main (void)
 {
 	/* Insert system clock initialization code here (sysclk_init()). */
@@ -83,13 +94,24 @@ int main (void)
 	
 	LCD_setup_window();
 	
+	ads7843_init();
+	
 	//printf("This is Arduino Console UART Application.\n");
 	 char * str ="hello";
 
 	
 	//app_widget_launch();
 	
+		
+		uint32_t p_x;
+		uint32_t p_y;
 	
+	ads7843_set_handler(piohandler);
+	
+	ads7843_enable_interrupt();  //Is redundant
+	
+	//ads7843_disable_interrupt();
+
 	while (1)
 	{
 		
@@ -107,6 +129,14 @@ int main (void)
 		
 		//gfx_draw_string_aligned(str,250, 240, &sysfont  , GFX_COLOR_DK_CYAN, GFX_COLOR_BLACK,TEXT_POS_BOTTOM,TEXT_ALIGN_CENTER);
 		
+		if(ads7843_is_pressed())
+		{
+			printf("Touch screen pressed.\n");
+			ads7843_get_raw_point(&p_x, &p_y);
+			printf("The user touched the screen at x = %d and y = %d",p_x,p_y);
+
+		}
+ 		printf("This is Arduino Console UART Application.\n");
 		
 //		area.pos.x = 10;
 //		area.pos.y = 150;
@@ -119,7 +149,7 @@ int main (void)
 //		}
 //		win_show(wtk_button_as_child(btn));
 
-		LCD_task_function();
+//		LCD_task_function();
 		
 		delay_ms(1000);
 		

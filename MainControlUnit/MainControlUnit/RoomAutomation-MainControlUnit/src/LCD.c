@@ -23,15 +23,30 @@ void LCD_init_pins()
 			pmc_enable_periph_clk(ID_PIOC);
 			pmc_enable_periph_clk(ID_PIOA);
 			
-			gpio_configure_pin(PIO_PC23_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+			gpio_configure_pin(PIO_PC23_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);  //GPIO in turn calls PIO
 			gpio_configure_pin(PIO_PC24_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
 			gpio_configure_pin(PIO_PC25_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
-			gpio_configure_pin(PIO_PC28_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+			
+			
+			
+			//gpio_configure_pin(PIO_PC28_IDX,PIO_TYPE_PIO_OUTPUT_1 | PIO_DEFAULT);
+			
+			//gpio_configure_pin(PIO_PC28_IDX,PIO_TYPE_PIO_INPUT | PIO_DEFAULT);
+			
+			
+			//----------------Touch IRQ Setting--------------//
+			pio_set_input(PIOC, PIO_PC28, PIO_PULLUP); 
+			
+			NVIC_EnableIRQ(PIOC_IRQn); 
+			//-----------------------------------------------//
+
 			
 			pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA25A_SPI0_MISO);
 			pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA26A_SPI0_MOSI);
 			pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA27A_SPI0_SPCK);
 			pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA28A_SPI0_NPCS0);
+			
+			pio_set_peripheral(PIOA,PIO_PERIPH_A, PIO_PA29A_SPI0_NPCS1);
 			
 			pmc_enable_periph_clk(ID_SPI0);
 			

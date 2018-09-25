@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\ASF\sam\components\resistive_touch\ads7843\ads7843.c
+
 src\widget_gui.c
 
 src\AddWidget.c
